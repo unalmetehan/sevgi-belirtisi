@@ -18,12 +18,13 @@
     height: 100%;
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(135deg, #fce4ec, #f8bbd0); /* Daha soft geçişler */
-    overflow-x: hidden;
+    overflow-x: hidden; /* Yatay kaydırmayı engelle */
     color: #4a1421; /* Koyu bordo tonları */
     user-select: none;
     position: relative;
     scroll-behavior: smooth;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23d81b60" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto; /* Özel kalp imleci */
+    /* Özel kalp imleci, mobil cihazlarda devre dışı bırakılabilir */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23d81b60" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto;
   }
 
   /* Sayfa Yükleme Animasyonu */
@@ -49,7 +50,7 @@
     transform: translateX(-50%);
     z-index: 1000;
     font-family: 'Great Vibes', cursive;
-    font-size: 4.5rem; /* Daha büyük ve etkileyici */
+    font-size: 4.5rem; /* Büyük ekranlar için */
     color: #880e4f; /* Derin gül kurusu */
     padding: 35px 20px 15px 20px;
     letter-spacing: 5px;
@@ -215,7 +216,7 @@
   h2 {
     font-family: 'Great Vibes', cursive;
     text-align: center;
-    font-size: 3.8rem; /* Daha büyük */
+    font-size: 3.8rem; /* Büyük ekranlar için */
     margin-bottom: 25px;
     color: #880e4f;
     text-shadow: 1px 1px 6px rgba(255, 255, 255, 0.8);
@@ -236,7 +237,7 @@
 
   p, blockquote {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.4rem; /* Daha okunaklı */
+    font-size: 1.4rem; /* Büyük ekranlar için */
     line-height: 1.8;
     max-width: 650px;
     margin: 0 auto 30px auto;
@@ -280,7 +281,7 @@
   }
 
   .flowers {
-    font-size: 4.2rem; /* Daha büyük çiçekler */
+    font-size: 4.2rem; /* Büyük ekranlar için */
     text-align: center;
     margin-top: 20px;
     user-select: none;
@@ -294,7 +295,7 @@
 
   /* Sürpriz Mesaj Kutusu */
   #surprise-message {
-    font-size: 1.7rem;
+    font-size: 1.7rem; /* Büyük ekranlar için */
     font-style: italic;
     text-align: center;
     max-width: 550px;
@@ -331,7 +332,7 @@
     display: block;
     margin: 25px auto 0 auto;
     padding: 16px 40px;
-    font-size: 1.25rem;
+    font-size: 1.25rem; /* Büyük ekranlar için */
     font-weight: 700;
     border-radius: 60px;
     border: none;
@@ -353,22 +354,22 @@
   .floating {
     position: fixed;
     pointer-events: none;
-    animation-timing-function: ease-in; /* Daha gerçekçi yükseliş */
+    animation-timing-function: ease-in;
     user-select: none;
     z-index: 5;
   }
   .heart-floating {
-    width: 28px; /* Daha büyük kalpler */
+    width: 28px;
     height: 28px;
-    background: #d81b60cc; /* Derin pembe */
+    background: #d81b60cc;
     clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 85%, 20% 100%, 0% 35%);
     filter: drop-shadow(0 0 8px #d81b60aa);
     opacity: 0.9;
-    animation-name: floatUpRotate; /* Dönme eklendi */
+    animation-name: floatUpRotate;
     animation-iteration-count: infinite;
   }
   .flower-floating {
-    font-size: 30px; /* Daha büyük çiçekler */
+    font-size: 30px;
     opacity: 0.9;
     animation-name: floatUpRotate;
     animation-iteration-count: infinite;
@@ -469,19 +470,27 @@
     transform: scale(1.1);
   }
 
-  /* Responsive Düzenlemeler */
+  /* --- Responsive Düzenlemeler --- */
+
+  /* Tabletler ve Küçük Laptoplar (max-width: 768px) */
   @media (max-width: 768px) {
+    body {
+      /* Fare imlecini mobil cihazlarda varsayılan yap */
+      cursor: auto;
+    }
     header {
-      font-size: 3.5rem;
+      font-size: 3.5rem; /* Başlık boyutu küçüldü */
       max-width: 95vw;
       padding: 25px 15px 10px 15px;
+      letter-spacing: 3px;
     }
     nav {
       top: 115px; /* Başlık değişimine göre ayarlandı */
       max-width: 95vw;
+      border-radius: 12px;
     }
     nav button {
-      font-size: 1rem;
+      font-size: 1.1rem; /* Buton yazıları küçüldü */
       padding: 12px 0;
       letter-spacing: 1px;
     }
@@ -491,10 +500,10 @@
       min-height: 400px;
     }
     h2 {
-      font-size: 2.8rem;
+      font-size: 2.8rem; /* İçerik başlıkları küçüldü */
     }
     p, blockquote {
-      font-size: 1.15rem;
+      font-size: 1.15rem; /* Paragraf yazıları küçüldü */
       padding: 20px;
     }
     #surprise-message {
@@ -509,6 +518,7 @@
     .heart-main {
       width: 150px;
       height: 135px;
+      margin: 15px auto 30px auto;
     }
     .flowers {
       font-size: 3.2rem;
@@ -520,52 +530,130 @@
       bottom: 15px;
       right: 15px;
     }
+    /* Dinamik öğelerin boyutlarını mobil için ayarlama */
+    .heart-floating, .flower-floating {
+      font-size: 25px; /* Uçuşanlar için min boyut */
+      width: 25px;
+      height: 25px;
+    }
+    .falling-element {
+      font-size: 22px; /* Yağanlar için min boyut */
+    }
+    .mouse-sparkle {
+      font-size: 1rem;
+    }
   }
 
+  /* Mobil Cihazlar (max-width: 480px) */
   @media (max-width: 480px) {
     header {
-      font-size: 2.8rem;
-      padding: 20px 10px 8px 10px;
-      letter-spacing: 3px;
+      font-size: 2.5rem; /* Daha küçük başlık */
+      padding: 18px 10px 6px 10px;
+      letter-spacing: 2px;
+    }
+    header::after {
+      font-size: 0.6em; /* Kalp simgesi daha küçük */
+      margin-left: 10px;
     }
     nav {
-      top: 95px;
-      flex-wrap: wrap;
-      border-radius: 10px;
+      top: 90px; /* Daha dar başlık sonrası yerleşim */
+      flex-wrap: wrap; /* Butonlar alta geçer */
+      border-radius: 8px;
     }
     nav button {
-      flex: none;
-      width: 50%;
-      border-right: none !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 0;
+      flex: none; /* Flex özelliğini kaldır */
+      width: 50%; /* İkişerli hizalama */
+      border-right: none !important; /* Dikey çizgiyi kaldır */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Yatay çizgi ekle */
+      border-radius: 0; /* Köşe yuvarlamaları kaldır */
+      font-size: 0.95rem;
+      padding: 10px 0;
     }
-    nav button:nth-child(even) {
-      border-right: none;
-    }
-    nav button:first-child { border-top-left-radius: 10px; }
-    nav button:nth-child(2) { border-top-right-radius: 10px; }
-    nav button:nth-child(odd):not(:first-child) { border-bottom-left-radius: 10px; }
-    nav button:nth-child(even):not(:nth-child(2)) { border-bottom-right-radius: 10px; }
-
+    /* Buton köşelerini düzenle */
+    nav button:nth-child(odd) { border-right: 1px solid rgba(255, 255, 255, 0.2); }
+    nav button:last-child { border-bottom: none; }
+    nav button:first-child { border-top-left-radius: 8px; }
+    nav button:nth-child(2) { border-top-right-radius: 8px; }
+    nav button:nth-last-child(2):not(:first-child) { border-bottom-left-radius: 8px; }
+    nav button:last-child:not(:nth-child(2)) { border-bottom-right-radius: 8px; }
 
     main {
-      padding: 150px 10px 50px 10px;
+      padding: 140px 10px 40px 10px;
     }
     h2 {
-      font-size: 2.2rem;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    h2::after {
+      width: 60px;
     }
     p, blockquote {
       font-size: 1rem;
       padding: 15px;
+      margin-bottom: 20px;
+    }
+    blockquote::before, blockquote::after {
+      font-size: 3em;
     }
     #surprise-message {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       min-height: 90px;
+      padding: 18px 18px;
     }
     #new-msg-btn {
       font-size: 0.9rem;
       padding: 8px 20px;
+    }
+    .heart-main {
+      width: 120px;
+      height: 108px;
+      margin: 10px auto 25px auto;
+    }
+    .flowers {
+      font-size: 2.8rem;
+    }
+    /* Dinamik öğelerin boyutlarını mobil için daha da küçültme */
+    .heart-floating, .flower-floating {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+    .falling-element {
+      font-size: 18px;
+    }
+    .mouse-sparkle {
+      font-size: 0.8rem;
+    }
+    /* Mobil cihazlarda fare izini ve tıklama efektini devre dışı bırakma (isteğe bağlı, performans için) */
+    body:not(.desktop) .mouse-sparkle,
+    body:not(.desktop) .click-particle {
+      display: none !important;
+    }
+  }
+
+  /* Daha küçük mobil cihazlar (örneğin eski iPhone SE, 320px genişlik) */
+  @media (max-width: 320px) {
+    header {
+      font-size: 2.2rem;
+      padding: 15px 5px 5px 5px;
+    }
+    nav button {
+      font-size: 0.85rem;
+      padding: 8px 0;
+    }
+    h2 {
+      font-size: 1.8rem;
+    }
+    p, blockquote {
+      font-size: 0.9rem;
+    }
+    #surprise-message {
+      font-size: 1rem;
+      padding: 15px;
+    }
+    #new-msg-btn {
+      font-size: 0.8rem;
+      padding: 6px 15px;
     }
   }
 </style>
@@ -614,6 +702,19 @@
 </button>
 
 <script>
+  // Masaüstü ve mobil ayrımı için sınıf ekleme
+  function setDeviceClass() {
+    if (window.innerWidth > 768) {
+      document.body.classList.add('desktop');
+      document.body.classList.remove('mobile');
+    } else {
+      document.body.classList.add('mobile');
+      document.body.classList.remove('desktop');
+    }
+  }
+  setDeviceClass();
+  window.addEventListener('resize', setDeviceClass);
+
   // Sayfa geçiş butonları
   const navButtons = document.querySelectorAll('nav button');
   const pages = document.querySelectorAll('main .page');
@@ -687,7 +788,7 @@
     surpriseMessageEl.classList.remove('active'); // Animasyonu tetiklemek için sınıfı kaldır
     void surpriseMessageEl.offsetWidth; // Reflow tetikle
     surpriseMessageEl.textContent = messages[idx];
-    surpriseMessageEl.classList.add('active'); // Animasyonu tekrar ekle
+    surpriseMessageEl.classList.add('active'); // Animasyonu tekrar ekla
 
     // Mesaj gösterildiğinde etrafında küçük patlama efekti
     createBurstEffect(surpriseMessageEl.getBoundingClientRect());
@@ -775,6 +876,9 @@
   // Fare İzi Efekti
   const sparkleEmojis = ['✨', '💖', '🌟', '💫', '🌸'];
   document.addEventListener('mousemove', (e) => {
+    // Mobil cihazlarda fare izini kapat
+    if (document.body.classList.contains('mobile')) return;
+
     const sparkle = document.createElement('span');
     sparkle.classList.add('mouse-sparkle');
     sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
@@ -789,6 +893,9 @@
 
   // Tıklama Efekti
   document.addEventListener('click', (e) => {
+    // Mobil cihazlarda tıklama efektini kapat
+    if (document.body.classList.contains('mobile')) return;
+
     const particleCount = 8; // Tıklamada oluşacak parçacık sayısı
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
