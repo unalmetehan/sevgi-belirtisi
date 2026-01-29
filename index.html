@@ -2,263 +2,408 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sonsuz Aşk - Rastgele Akış</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>İyi ki Doğdun Yağmur</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background: #020205;
+    /* --- TEMEL CSS --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+        background-color: #020205;
+        font-family: 'Poppins', sans-serif;
+        color: #fff;
+        overflow-x: hidden;
+        width: 100%;
     }
-    canvas { display:block; }
+
+    #c {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: -1;
+        touch-action: none;
+    }
+
+    .content-wrapper { position: relative; z-index: 1; width: 100%; }
+
+    section {
+        min-height: 100vh;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    /* GİRİŞ */
+    .hero-title {
+        font-family: 'Dancing Script', cursive;
+        font-size: clamp(4rem, 10vw, 7rem);
+        background: linear-gradient(to right, #ffd700, #ffb7c5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        animation: fadeInUp 1.5s ease-out;
+        padding: 0 10px;
+    }
+    
+    .hero-subtitle {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        animation: fadeInUp 1.5s ease-out 0.5s backwards;
+        max-width: 700px;
+    }
+
+    .scroll-hint {
+        margin-top: 3rem; font-size: 2rem;
+        animation: bounce 2s infinite; opacity: 0.7; cursor: pointer;
+    }
+
+    /* MEKTUP KARTI */
+    .glass-card {
+        background: rgba(20, 20, 35, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        padding: 2.5rem;
+        max-width: 800px; width: 95%;
+        margin: 2rem 0;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        transform: translateY(50px); opacity: 0;
+        transition: all 0.8s ease-out;
+    }
+    
+    .glass-card.visible { transform: translateY(0); opacity: 1; }
+
+    .message-text { 
+        font-size: 1.1rem; line-height: 1.9; color: #f0f0f0; 
+        text-align: justify; text-align-last: center;
+    }
+
+    /* IZGARA DÜZENİ (3 Üstte - 3 Altta) */
+    .grid-container {
+        display: grid;
+        gap: 1.5rem; 
+        width: 100%; 
+        max-width: 1200px;
+        padding: 2rem 0;
+        
+        /* Varsayılan (Mobil): Tek sütun */
+        grid-template-columns: 1fr;
+    }
+
+    /* Tablet ve Üstü: 2 Sütun */
+    @media (min-width: 600px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Masaüstü: Tam olarak 3 Sütun (3 üst, 3 alt olması için) */
+    @media (min-width: 992px) {
+        .grid-container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        transition: transform 0.3s;
+        backdrop-filter: blur(5px);
+        transform: translateY(30px); opacity: 0;
+        transition: all 0.6s ease-out;
+        display: flex; flex-direction: column; align-items: center;
+        min-height: 250px; /* Kartların boyu eşit görünsün */
+        justify-content: center;
+    }
+    
+    .feature-card.visible { transform: translateY(0); opacity: 1; }
+    .feature-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.12);
+        border-color: #ffd700;
+    }
+
+    .icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .card-title { font-family: 'Playfair Display', serif; color: #ffd700; margin-bottom: 0.8rem; font-size: 1.5rem; }
+    .card-text { font-size: 0.95rem; color: #ddd; line-height: 1.6; }
+
+    /* FİNAL MESAJ */
+    .final-msg-container { padding: 1rem 2rem; display: inline-block; }
+    .final-msg {
+        font-family: 'Dancing Script', cursive;
+        font-size: clamp(4rem, 12vw, 8rem);
+        background: linear-gradient(to bottom, #fff, #FFB7C5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 25px rgba(255, 183, 197, 0.6);
+        line-height: 1.2;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(10px); }
+    }
+
+    @media (max-width: 768px) {
+        section { padding: 1rem; }
+        .glass-card { padding: 1.5rem; }
+        .message-text { font-size: 1rem; }
+        .card-title { font-size: 1.3rem; }
+    }
 </style>
 </head>
 <body>
 
-<canvas id="c"></canvas>
+    <canvas id="c"></canvas>
 
-<script>
-const canvas = document.getElementById("c");
-const ctx = canvas.getContext("2d", { alpha: false });
-
-let w, h, DPR;
-function resize(){
-    DPR = Math.max(1, Math.min(2, devicePixelRatio||1));
-    w = canvas.width = innerWidth * DPR;
-    h = canvas.height = innerHeight * DPR;
-    canvas.style.width = innerWidth + "px";
-    canvas.style.height = innerHeight + "px";
-}
-window.addEventListener("resize", resize);
-resize();
-
-const rand = (a,b)=>Math.random()*(b-a)+a;
-const TAU = Math.PI*2;
-let time = 0;
-
-/* ======= YARDIMCI MATEMATİK ======= */
-function heartXY01(t){
-    const a = t*TAU;
-    const x = 16*Math.pow(Math.sin(a),3);
-    const y = 13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a);
-    return {x, y:-y};
-}
-
-const n1 = x => Math.sin(x*1.13)+Math.sin(x*0.47)*0.5+Math.sin(x*2.07)*0.25;
-function curlNoise(x,y,t){
-    const e=0.0022, s=0.004, sp=0.15;
-    const a  = n1(x*s + t*sp) + n1(y*s + t*sp);
-    const ax = n1((x+e)*s + t*sp) + n1(y*s + t*sp);
-    const ay = n1(x*s + t*sp) + n1((y+e)*s + t*sp);
-    return { vx: -(ay-a)/e, vy: (ax-a)/e };
-}
-
-function strokeSeg(x1,y1,x2,y2,hue,alpha,width,taper){
-    const widthScaled = width * (0.35+0.65*taper);
-    ctx.globalCompositeOperation="screen"; 
-    ctx.lineCap="round";
-
-    ctx.lineWidth = widthScaled*5.0;
-    ctx.strokeStyle = `hsla(${hue},95%,60%,${alpha*0.15})`;
-    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
-
-    ctx.lineWidth = widthScaled*1.0;
-    ctx.strokeStyle = `hsla(${hue},98%,85%,${alpha*0.4})`;
-    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
-}
-
-/* ======= SINIFLAR ======= */
-class Star {
-    constructor(){ this.reset(); }
-    reset(){
-        this.x = rand(0,w); this.y = rand(0,h);
-        this.r = rand(0.5, 2.5) * DPR;
-        this.a = rand(0.1, 0.6);
-        this.v = rand(0.2, 0.5) * DPR;
-    }
-    draw(){
-        this.y -= this.v;
-        if(this.y < 0) this.reset();
-        ctx.globalCompositeOperation = "source-over";
-        ctx.fillStyle = `rgba(255,255,255,${this.a})`;
-        ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, TAU); ctx.fill();
-    }
-}
-const stars = Array.from({length:80}, ()=>new Star());
-
-class YarnHeart {
-    constructor(){
-        // Konum: Ekranın her yerine dağılsın
-        this.cx = w/2 + rand(-w*0.45, w*0.45);
-        this.cy = h/2 + rand(-h*0.35, h*0.35);
-        this.scale = rand(5, 9) * DPR; 
+    <div class="content-wrapper">
         
-        // ÖMÜR AYARLARI
-        this.life = 0; // 0'dan başlayıp parlayacak (Fade In)
-        this.maxLife = 1.0;
-        this.state = "born"; // born -> alive -> dying
-        this.fadeInSpeed = rand(0.01, 0.03);
-        this.decay = rand(0.0005, 0.0015);
+        <section id="home">
+            <h1 class="hero-title">İyi ki Doğdun Yağmur</h1>
+            <p class="hero-subtitle">"Yanında olduğum her an bir hediye..."</p>
+            <div class="scroll-hint">↓</div>
+        </section>
 
-        this.threads = [];
-        const count = 150; // Biraz optimize ettik ki sayı artınca kasmasın
-        for(let i=0; i<count; i++){
-            const isVein = Math.random() < 0.25;
-            const u = rand(0,1);
-            const inward = rand(0.1, 0.9);
-            const p = heartXY01(u);
-            this.threads.push({
-                isVein, u,
-                x: this.cx + p.x * this.scale * inward,
-                y: this.cy + p.y * this.scale * inward,
-                vx:0, vy:0,
-                hue: isVein ? rand(300, 340) : rand(335, 360),
-                speed: isVein ? rand(0.003, 0.006) : rand(0.001, 0.003),
-                spiral: isVein ? rand(2,8)*DPR : rand(5,15)*DPR,
-                jitter: isVein ? rand(2,4) : rand(1,2),
-                w: rand(0.5, 1.5) * DPR
-            });
-        }
-    }
+        <section id="message">
+            <div class="glass-card reveal">
+                <h2 style="font-family: 'Playfair Display'; color: #ffd700; margin-bottom: 1.5rem; font-size: 1.8rem;">Sevgili Yağmur'um,</h2>
+                <div class="message-text">
+                    <p>Bugün senin günün ve bu özel günde sana ne kadar değerli olduğunu hatırlatmak istedim. Hayatıma kattığın her an, her gülümseme, her bakış benim için çok önemli.</p>
+                    <br>
+                    <p>Sen sadece bir doğum günü kutlamasından daha fazlasını hak ediyorsun, ama umarım bu küçük sürpriz seni gülümsetir ve sana ne kadar özel olduğunu hissettirir.</p>
+                    <br>
+                    <p>Her yeni yaşın, hayallerinin gerçekleştiği, mutluluğunun katlandığı ve her anın güzelliklerle dolu olduğu bir yıl olsun.</p>
+                </div>
+            </div>
+        </section>
 
-    updateAndDraw(dt, t){
-        // ÖMÜR MANTIĞI (Fade In / Fade Out)
-        if(this.state === "born"){
-            this.life += this.fadeInSpeed;
-            if(this.life >= 1.0){
-                this.life = 1.0;
-                this.state = "dying";
-            }
-        } else {
-            this.life -= this.decay;
-        }
+        <section id="features">
+            <div class="grid-container">
+                
+                <div class="feature-card reveal">
+                    <span class="icon">✨</span>
+                    <h3 class="card-title">Enerjin</h3>
+                    <p class="card-text">Hayata bakış açın, pozitif enerjin ve her zaman ışıldayan ruhun etrafındaki herkesi aydınlatıyor.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <span class="icon">🤍</span>
+                    <h3 class="card-title">Kalbin</h3>
+                    <p class="card-text">İçindeki iyilik, anlayış ve sevgi dolu kalbin seni gerçekten özel ve eşsiz yapıyor.</p>
+                </div>
 
-        this.cy -= 0.1 * DPR; // Çok yavaş yukarı
+                <div class="feature-card reveal">
+                    <span class="icon">🌟</span>
+                    <h3 class="card-title">Benzersizliğin</h3>
+                    <p class="card-text">Senin gibi biri yok. Her detayın, her özelliğin seni sen yapıyor ve bu mükemmel.</p>
+                </div>
 
-        for(let a of this.threads){
-            a.u += a.speed;
-            if(a.u > 1) a.u -= 1;
-            const p = heartXY01(a.u);
-            const inward = a.isVein ? 0.55 : 0.72;
-            const baseS = this.scale * inward;
-            const ang = (a.u * TAU * (a.isVein?6:3)) + t*(a.isVein?3.0:1.6);
-            const sx = Math.cos(ang) * a.spiral;
-            const sy = Math.sin(ang) * a.spiral;
-            const tx = this.cx + p.x*baseS + sx;
-            const ty = this.cy + p.y*baseS + sy;
-            const cn = curlNoise(a.x, a.y, t);
+                <div class="feature-card reveal">
+                    <span class="icon">🌸</span>
+                    <h3 class="card-title">Güzelliğin</h3>
+                    <p class="card-text">Sadece dış güzelliğin değil, iç güzelliğin de seni özel yapan şeylerden. İçinden dışına güzelsin.</p>
+                </div>
 
-            a.vx += (tx - a.x) * 0.06 + cn.vx * a.jitter;
-            a.vy += (ty - a.y) * 0.06 + cn.vy * a.jitter;
-            a.vx *= 0.90; a.vy *= 0.90;
+                <div class="feature-card reveal">
+                    <span class="icon">💝</span>
+                    <h3 class="card-title">Sevgin</h3>
+                    <p class="card-text">Sevme şeklin, önemseme biçimin ve her an yanımda olman hayatımın en değerli hediyesi.</p>
+                </div>
 
-            const ox = a.x; const oy = a.y;
-            a.x += a.vx; a.y += a.vy;
+                <div class="feature-card reveal">
+                    <span class="icon">🎬</span>
+                    <h3 class="card-title">Bizim İçin...</h3>
+                    <p class="card-text" style="font-weight: 500; font-size: 1.1rem; color: #fff;">
+                        Kurtlar Vadisi 79. Bölüm<br>
+                        <span style="color: #FFB7C5; font-size: 1.3rem; display: block; margin-top: 5px;">Dakika 22.50</span>
+                    </p>
+                </div>
 
-            const alpha = this.life * (a.isVein ? 0.9 : 0.5); 
-            if(alpha > 0.01){
-                strokeSeg(ox, oy, a.x, a.y, a.hue, alpha, a.w, 0.8);
-            }
-        }
-    }
-}
+            </div>
+        </section>
 
-let hearts = [];
-const MAX_HEARTS = 15; // HEDEF SAYI ARTTI
+        <section id="final">
+            <div class="glass-card reveal" style="text-align: center; background: rgba(0,0,0,0.6); border:none; box-shadow:none;">
+                <div class="final-msg-container">
+                    <h1 class="final-msg">SEVİLİYORSUN</h1>
+                </div>
+            </div>
+        </section>
 
-class Stem{
-    constructor(x,y,a,d){
-        this.x=x; this.y=y; this.a=a; this.d=d;
-        this.len=0; this.max=rand(60,110) * DPR; this.speed=rand(0.6,1.2) * DPR;
-        this.children=[]; this.bloom=false;
-    }
-    update(){
-        if(this.len < this.max){
-            this.len += this.speed; this.a += Math.sin(time*0.01)*0.002;
-        } else {
-            if(this.d > 0 && this.children.length===0){
-                if(Math.random() > 0.96){
-                    this.children.push(new Stem(this.endX,this.endY,this.a-0.4,this.d-1));
-                    this.children.push(new Stem(this.endX,this.endY,this.a+0.4,this.d-1));
+    </div>
+
+    <script>
+        // SCROLL REVEAL
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("visible");
                 }
-            } else this.bloom=true;
+            }
         }
-        this.endX = this.x + Math.cos(this.a)*this.len;
-        this.endY = this.y + Math.sin(this.a)*this.len;
-        this.children.forEach(c=>c.update());
-    }
-    draw(){
-        ctx.globalCompositeOperation="screen";
-        ctx.strokeStyle=`hsla(100, 70%, 50%, ${this.d/6})`;
-        ctx.lineWidth = this.d * DPR * 0.5; ctx.lineCap = "round";
-        ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(this.endX,this.endY); ctx.stroke();
-        if(this.bloom){
-            ctx.fillStyle="rgba(255,80,140,0.8)";
-            ctx.shadowBlur=15; ctx.shadowColor="pink";
-            ctx.beginPath(); ctx.arc(this.endX,this.endY, 3*DPR, 0, TAU); ctx.fill();
-            ctx.shadowBlur=0;
+        window.addEventListener("scroll", reveal);
+        document.addEventListener("DOMContentLoaded", reveal);
+
+        // CANVAS ANIMATION (OPTIMIZED)
+        const canvas = document.getElementById("c");
+        const ctx = canvas.getContext("2d", { alpha: false });
+        let w, h, DPR;
+        
+        function resize(){
+            DPR = Math.max(1, Math.min(2, devicePixelRatio||1));
+            w = canvas.width = innerWidth * DPR;
+            h = canvas.height = innerHeight * DPR;
         }
-        this.children.forEach(c=>c.draw());
-    }
-}
-const flower = new Stem(w/2, h, -Math.PI/2, 6);
+        window.addEventListener("resize", resize);
+        resize();
 
-let textAlpha=0;
-function drawText(){
-    textAlpha = Math.min(textAlpha+0.003, 1);
-    ctx.globalCompositeOperation = "source-over";
-    ctx.textAlign="center";
-    ctx.shadowColor="gold"; ctx.shadowBlur=20;
-    ctx.fillStyle=`rgba(255, 210, 125, ${textAlpha})`;
-    let fs1 = Math.min(w,h) * 0.05;
-    ctx.font=`${fs1}px 'Great Vibes'`;
-    ctx.fillText("İyi ki Doğdun Sevgilim", w/2, h*0.15);
-    let fs2 = fs1 * 0.7;
-    ctx.font=`${fs2}px 'Great Vibes'`;
-    ctx.fillText("Kasım’lı değil,", w/2, h*0.25);
-    ctx.fillText("Aralıksız seviyorum seni.", w/2, h*0.32);
-    ctx.shadowBlur=0;
-}
+        const rand = (a,b)=>Math.random()*(b-a)+a;
+        const TAU = Math.PI*2;
+        let time = 0;
 
-let last = performance.now();
-function animate(now){
-    const dt = Math.min(0.033, (now-last)/1000);
-    last = now;
-    time += dt;
-
-    ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = "rgba(2, 3, 10, 0.15)";
-    ctx.fillRect(0,0,w,h);
-
-    stars.forEach(s => s.draw());
-
-    // --- GÜNCELLENMİŞ SPAWN MANTIĞI ---
-    // Hepsini aynı anda doğurmak yerine rastgele zamanlarda ekle
-    // Eğer ekrandaki kalp sayısı hedeften azsa, %3 şansla yeni bir tane ekle
-    if(hearts.length < MAX_HEARTS && Math.random() < 0.03){
-        hearts.push(new YarnHeart());
-    }
-
-    for(let i=hearts.length-1; i>=0; i--){
-        hearts[i].updateAndDraw(dt, time);
-        if(hearts[i].life <= 0 && hearts[i].state === "dying") {
-            hearts.splice(i, 1);
+        function heartXY01(t){
+            const a = t*TAU;
+            const x = 16*Math.pow(Math.sin(a),3);
+            const y = 13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a);
+            return {x, y:-y};
         }
-    }
 
-    flower.update();
-    flower.draw();
-    drawText();
+        const n1 = x => Math.sin(x*1.13)+Math.sin(x*0.47)*0.5+Math.sin(x*2.07)*0.25;
+        function curlNoise(x,y,t){
+            const e=0.0022, s=0.004, sp=0.15;
+            const a  = n1(x*s + t*sp) + n1(y*s + t*sp);
+            const ax = n1((x+e)*s + t*sp) + n1(y*s + t*sp);
+            const ay = n1(x*s + t*sp) + n1((y+e)*s + t*sp);
+            return { vx: -(ay-a)/e, vy: (ax-a)/e };
+        }
 
-    requestAnimationFrame(animate);
-}
+        ctx.lineCap="round";
 
-resize();
-flower.x = w/2; flower.y = h;
-animate(performance.now());
+        function strokeSeg(x1,y1,x2,y2,hue,alpha,width,taper){
+            const widthScaled = width * (0.35+0.65*taper);
+            ctx.globalCompositeOperation="screen"; 
+            ctx.lineWidth = widthScaled*4.0;
+            ctx.strokeStyle = `hsla(${hue},95%,60%,${alpha*0.15})`; 
+            ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+            ctx.lineWidth = widthScaled*1.0;
+            ctx.strokeStyle = `hsla(${hue},98%,85%,${alpha*0.4})`;
+            ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+        }
 
-</script>
+        class Star {
+            constructor(){ this.reset(); }
+            reset(){ this.x = rand(0,w); this.y = rand(0,h); this.r = rand(0.5, 2.5)*DPR; this.a = rand(0.1, 0.6); this.v = rand(0.2, 0.5)*DPR; }
+            draw(){
+                this.y -= this.v; if(this.y < 0) this.reset();
+                ctx.globalCompositeOperation = "source-over";
+                ctx.fillStyle = `rgba(255,255,255,${this.a})`;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, TAU); ctx.fill();
+            }
+        }
+        const stars = Array.from({length:80}, ()=>new Star());
+
+        class YarnHeart {
+            constructor(){
+                this.cx = w/2 + rand(-w*0.45, w*0.45);
+                this.cy = h/2 + rand(-h*0.35, h*0.35);
+                this.scale = rand(6, 10) * DPR; 
+                this.life = 0; this.state = "born"; 
+                this.fadeInSpeed = rand(0.01, 0.02); this.decay = rand(0.0005, 0.0015);
+                this.threads = [];
+                const count = 100; // Optimize edildi
+                for(let i=0; i<count; i++){
+                    const isVein = Math.random() < 0.25;
+                    const u = rand(0,1); const inward = rand(0.1, 0.9); const p = heartXY01(u);
+                    this.threads.push({
+                        isVein, u,
+                        x: this.cx + p.x * this.scale * inward, y: this.cy + p.y * this.scale * inward,
+                        vx:0, vy:0, hue: isVein ? rand(300, 340) : rand(335, 360), 
+                        speed: isVein ? rand(0.003, 0.006) : rand(0.001, 0.003),
+                        spiral: isVein ? rand(2,8)*DPR : rand(5,15)*DPR,
+                        jitter: isVein ? rand(2,4) : rand(1,2), w: rand(0.5, 1.5) * DPR
+                    });
+                }
+            }
+            updateAndDraw(dt, t){
+                if(this.state === "born"){ this.life += this.fadeInSpeed; if(this.life >= 1.0){ this.life = 1.0; this.state = "dying"; } } 
+                else { this.life -= this.decay; }
+                this.cy -= 0.1 * DPR; 
+                for(let a of this.threads){
+                    a.u += a.speed; if(a.u > 1) a.u -= 1;
+                    const p = heartXY01(a.u); const inward = a.isVein ? 0.55 : 0.72; const baseS = this.scale * inward;
+                    const ang = (a.u * TAU * (a.isVein?6:3)) + t*(a.isVein?3.0:1.6);
+                    const sx = Math.cos(ang) * a.spiral; const sy = Math.sin(ang) * a.spiral;
+                    const tx = this.cx + p.x*baseS + sx; const ty = this.cy + p.y*baseS + sy;
+                    const cn = curlNoise(a.x, a.y, t);
+                    a.vx += (tx - a.x) * 0.06 + cn.vx * a.jitter; a.vy += (ty - a.y) * 0.06 + cn.vy * a.jitter;
+                    a.vx *= 0.90; a.vy *= 0.90;
+                    const ox = a.x; const oy = a.y; a.x += a.vx; a.y += a.vy;
+                    const alpha = this.life * (a.isVein ? 0.9 : 0.5); 
+                    if(alpha > 0.01){ strokeSeg(ox, oy, a.x, a.y, a.hue, alpha, a.w, 0.8); }
+                }
+            }
+        }
+        let hearts = []; const MAX_HEARTS = 8; // Optimize edildi
+
+        class Stem{
+            constructor(x,y,a,d){
+                this.x=x; this.y=y; this.a=a; this.d=d;
+                this.len=0; this.max=rand(60,110) * DPR; this.speed=rand(0.6,1.2) * DPR;
+                this.children=[]; this.bloom=false;
+            }
+            update(){
+                if(this.len < this.max){ this.len += this.speed; this.a += Math.sin(time*0.01)*0.002; } 
+                else { if(this.d > 0 && this.children.length===0){ if(Math.random() > 0.96){ this.children.push(new Stem(this.endX,this.endY,this.a-0.4,this.d-1)); this.children.push(new Stem(this.endX,this.endY,this.a+0.4,this.d-1)); } } else this.bloom=true; }
+                this.endX = this.x + Math.cos(this.a)*this.len; this.endY = this.y + Math.sin(this.a)*this.len;
+                this.children.forEach(c=>c.update());
+            }
+            draw(){
+                ctx.globalCompositeOperation="screen"; ctx.strokeStyle=`hsla(110, 80%, 60%, ${this.d/6})`; 
+                ctx.lineWidth = this.d * DPR * 0.5; 
+                ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(this.endX,this.endY); ctx.stroke();
+                if(this.bloom){
+                    ctx.fillStyle="rgba(255,80,140,0.9)"; ctx.shadowBlur=15; ctx.shadowColor="#ff0080";
+                    ctx.beginPath(); ctx.arc(this.endX,this.endY, 3*DPR, 0, TAU); ctx.fill(); ctx.shadowBlur=0;
+                }
+                this.children.forEach(c=>c.draw());
+            }
+        }
+        const flower = new Stem(w/2, h, -Math.PI/2, 6);
+
+        let last = performance.now();
+        function animate(now){
+            const dt = Math.min(0.033, (now-last)/1000); last = now; time += dt;
+            ctx.globalCompositeOperation = "source-over"; 
+            ctx.fillStyle = "rgba(2, 3, 10, 0.15)";
+            ctx.fillRect(0,0,w,h);
+
+            stars.forEach(s => s.draw());
+            if(hearts.length < MAX_HEARTS && Math.random() < 0.03){ hearts.push(new YarnHeart()); }
+            for(let i=hearts.length-1; i>=0; i--){ hearts[i].updateAndDraw(dt, time); if(hearts[i].life <= 0 && hearts[i].state === "dying") { hearts.splice(i, 1); } }
+            
+            flower.x = w/2; flower.y = h;
+            flower.update(); flower.draw();
+            
+            requestAnimationFrame(animate);
+        }
+        animate(performance.now());
+    </script>
 </body>
 </html>
