@@ -1,829 +1,264 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İyi ki doğdun Yağmur 💖</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-pink: #FFB7C5;
-            --secondary-purple: #C8A2E0;
-            --soft-cream: #FFF5E1;
-            --gold: #FFD700;
-            --dark-text: #4A4A4A;
-            --light-text: #FFFFFF;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #FFE5EC 0%, #F3E5F5 50%, #E8EAF6 100%);
-            color: var(--dark-text);
-            scroll-behavior: smooth;
-        }
-
-        /* Animated Background */
-        .background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .floating-heart {
-            position: absolute;
-            font-size: 20px;
-            animation: floatUp 15s infinite ease-in;
-            opacity: 0;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, var(--gold), transparent);
-            border-radius: 50%;
-            animation: sparkle 3s infinite ease-in-out;
-        }
-
-        @keyframes sparkle {
-            0%, 100% {
-                opacity: 0;
-                transform: scale(0);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-        }
-
-        .hero-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(3rem, 10vw, 7rem);
-            font-weight: 700;
-            background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 50%, #F67280 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            animation: fadeInDown 1.5s ease-out;
-            text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
-        }
-
-        .hero-subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: var(--dark-text);
-            margin-bottom: 40px;
-            animation: fadeInUp 1.5s ease-out 0.5s backwards;
-            font-style: italic;
-        }
-
-        .heart-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 40px 0;
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        .big-heart {
-            font-size: 150px;
-            animation: heartbeat 1.5s infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
-        }
-
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.1);
-            }
-            50% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-
-        .scroll-indicator:hover {
-            opacity: 1;
-        }
-
-        .scroll-indicator::before {
-            content: '↓';
-            font-size: 40px;
-            color: var(--primary-pink);
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        /* Message Section */
-        .message-section {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 20px;
-        }
-
-        .message-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 60px;
-            max-width: 800px;
-            box-shadow: 0 8px 32px rgba(255, 107, 157, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            animation: fadeIn 1s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .message-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .message-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: #C06C84;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .message-card p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            line-height: 1.8;
-            color: var(--dark-text);
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Special Things Section */
-        .special-section {
-            min-height: 100vh;
-            padding: 80px 20px;
-        }
-
-        .special-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            text-align: center;
-            color: #C06C84;
-            margin-bottom: 60px;
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .special-card {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px rgba(192, 108, 132, 0.15);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .special-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .special-card:hover::before {
-            left: 100%;
-        }
-
-        .special-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 45px rgba(192, 108, 132, 0.3);
-        }
-
-        .card-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-
-        .special-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: #C06C84;
-            margin-bottom: 15px;
-        }
-
-        .special-card p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--dark-text);
-        }
-
-        /* Final Section */
-        .final-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px;
-            position: relative;
-        }
-
-        .final-message {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 50%, #F67280 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInScale 2s ease-out;
-            margin-bottom: 40px;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .love-animation {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-        }
-
-        .rotating-hearts {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            animation: rotate 10s linear infinite;
-        }
-
-        .rotating-heart {
-            position: absolute;
-            font-size: 40px;
-            filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.5));
-        }
-
-        .rotating-heart:nth-child(1) {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .rotating-heart:nth-child(2) {
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-        }
-
-        .rotating-heart:nth-child(3) {
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .rotating-heart:nth-child(4) {
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-        }
-
-        .center-heart {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        /* Music Control */
-        .music-control {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(15px);
-            border-radius: 50%;
-            border: 2px solid rgba(255, 107, 157, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(192, 108, 132, 0.2);
-            z-index: 1000;
-        }
-
-        .music-control:hover {
-            transform: scale(1.1);
-            background: rgba(255, 182, 193, 0.6);
-        }
-
-        .music-icon {
-            font-size: 24px;
-            animation: musicNote 1s infinite;
-        }
-
-        @keyframes musicNote {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .message-card {
-                padding: 40px 30px;
-            }
-
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-
-            .music-control {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
-
-            .love-animation {
-                width: 200px;
-                height: 200px;
-            }
-
-            .center-heart {
-                font-size: 60px;
-            }
-
-            .rotating-heart {
-                font-size: 30px;
-            }
-        }
-
-        /* Loading Animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #FFE5EC 0%, #F3E5F5 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-heart {
-            font-size: 100px;
-            animation: loaderPulse 1.5s infinite;
-        }
-
-        @keyframes loaderPulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.3);
-                opacity: 0.7;
-            }
-        }
-
-        /* Scroll reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sonsuz Aşk - Rastgele Akış</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #020205;
+    }
+    canvas { display:block; }
+</style>
 </head>
 <body>
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-heart">💖</div>
-    </div>
 
-    <!-- Background Animation -->
-    <div class="background-animation" id="bgAnimation"></div>
+<canvas id="c"></canvas>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1 class="hero-title">İyi ki doğdun Yağmur 💖</h1>
-        <p class="hero-subtitle">Hayatıma gelen en güzel hediye sensin...</p>
-        <div class="heart-container">
-            <div class="big-heart">💗</div>
-        </div>
-        <div class="scroll-indicator" onclick="smoothScroll('.message-section')"></div>
-    </section>
+<script>
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d", { alpha: false });
 
-    <!-- Message Section -->
-    <section class="message-section reveal">
-        <div class="message-card">
-            <h2>Sevgili Yağmur'um,</h2>
-            <p>
-                Bugün senin günün ve bu özel günde sana ne kadar değerli olduğunu hatırlatmak istedim. 
-                Hayatıma kattığın her an, her gülümseme, her bakış benim için paha biçilmez.
-            </p>
-            <p>
-                Sen sadece bir doğum günü kutlamasından daha fazlasını hak ediyorsun, ama umarım bu küçük sürpriz 
-                seni gülümsetir ve sana ne kadar özel olduğunu hissettirir.
-            </p>
-            <p>
-                Her yeni yaşın, hayallerinin gerçekleştiği, mutluluğunun katlandığı ve her anın güzelliklerle dolu olduğu 
-                bir yıl olsun. Yanında olduğum her an bir hediye.
-            </p>
-        </div>
-    </section>
+let w, h, DPR;
+function resize(){
+    DPR = Math.max(1, Math.min(2, devicePixelRatio||1));
+    w = canvas.width = innerWidth * DPR;
+    h = canvas.height = innerHeight * DPR;
+    canvas.style.width = innerWidth + "px";
+    canvas.style.height = innerHeight + "px";
+}
+window.addEventListener("resize", resize);
+resize();
 
-    <!-- Special Things Section -->
-    <section class="special-section reveal">
-        <h2 class="special-title">Seni Özel Yapan Şeyler</h2>
-        <div class="cards-container">
-            <div class="special-card">
-                <div class="card-icon">✨</div>
-                <h3>Gülüşün</h3>
-                <p>Gülüşün kalbime dokunuyor ve her şeyi daha güzel kılıyor. O gülümseme karşısında erimemek mümkün değil.</p>
-            </div>
-            <div class="special-card">
-                <div class="card-icon">🌟</div>
-                <h3>Enerjin</h3>
-                <p>Hayata bakış açın, pozitif enerjin ve her zaman ışıldayan ruhun etrafındaki herkesi aydınlatıyor.</p>
-            </div>
-            <div class="special-card">
-                <div class="card-icon">💫</div>
-                <h3>Kalbin</h3>
-                <p>İçindeki iyilik, anlayış ve sevgi dolu kalbin seni gerçekten özel ve eşsiz yapıyor.</p>
-            </div>
-            <div class="special-card">
-                <div class="card-icon">🎨</div>
-                <h3>Benzersizliğin</h3>
-                <p>Senin gibi biri yok. Her detayın, her özelliğin seni sen yapıyor ve bu mükemmel.</p>
-            </div>
-            <div class="special-card">
-                <div class="card-icon">🌸</div>
-                <h3>Güzelliğin</h3>
-                <p>Sadece dış güzelliğin değil, iç güzelliğin de seni özel yapan şeylerden. İçinden dışına güzelsin.</p>
-            </div>
-            <div class="special-card">
-                <div class="card-icon">💝</div>
-                <h3>Sevgin</h3>
-                <p>Sevme şeklin, önemseme biçimin ve her an yanımda olman hayatımın en değerli hediyesi.</p>
-            </div>
-        </div>
-    </section>
+const rand = (a,b)=>Math.random()*(b-a)+a;
+const TAU = Math.PI*2;
+let time = 0;
 
-    <!-- Final Section -->
-    <section class="final-section reveal">
-        <div class="final-message">Seni Çok Seviyorum</div>
-        <div class="love-animation">
-            <div class="rotating-hearts">
-                <div class="rotating-heart">💕</div>
-                <div class="rotating-heart">💖</div>
-                <div class="rotating-heart">💗</div>
-                <div class="rotating-heart">💝</div>
-            </div>
-            <div class="center-heart">❤️</div>
-        </div>
-    </section>
+/* ======= YARDIMCI MATEMATİK ======= */
+function heartXY01(t){
+    const a = t*TAU;
+    const x = 16*Math.pow(Math.sin(a),3);
+    const y = 13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a);
+    return {x, y:-y};
+}
 
-    <!-- Music Control -->
-    <div class="music-control" id="musicToggle" title="Müziği Aç/Kapat">
-        <div class="music-icon">🎵</div>
-    </div>
+const n1 = x => Math.sin(x*1.13)+Math.sin(x*0.47)*0.5+Math.sin(x*2.07)*0.25;
+function curlNoise(x,y,t){
+    const e=0.0022, s=0.004, sp=0.15;
+    const a  = n1(x*s + t*sp) + n1(y*s + t*sp);
+    const ax = n1((x+e)*s + t*sp) + n1(y*s + t*sp);
+    const ay = n1(x*s + t*sp) + n1((y+e)*s + t*sp);
+    return { vx: -(ay-a)/e, vy: (ax-a)/e };
+}
 
-    <!-- Hidden Audio Element -->
-    <audio id="bgMusic" loop>
-        <!-- You can add your music source here -->
-        <!-- <source src="your-music.mp3" type="audio/mpeg"> -->
-    </audio>
+function strokeSeg(x1,y1,x2,y2,hue,alpha,width,taper){
+    const widthScaled = width * (0.35+0.65*taper);
+    ctx.globalCompositeOperation="screen"; 
+    ctx.lineCap="round";
 
-    <script>
-        // Loader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 2000);
-        });
+    ctx.lineWidth = widthScaled*5.0;
+    ctx.strokeStyle = `hsla(${hue},95%,60%,${alpha*0.15})`;
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
 
-        // Background Animation - Floating Hearts
-        function createFloatingHearts() {
-            const bgAnimation = document.getElementById('bgAnimation');
-            const hearts = ['💕', '💖', '💗', '💝', '💘', '💓'];
-            
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                bgAnimation.appendChild(heart);
-                
-                setTimeout(() => {
-                    heart.remove();
-                }, 15000);
-            }, 1000);
-        }
+    ctx.lineWidth = widthScaled*1.0;
+    ctx.strokeStyle = `hsla(${hue},98%,85%,${alpha*0.4})`;
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+}
 
-        // Background Animation - Particles
-        function createParticles() {
-            const bgAnimation = document.getElementById('bgAnimation');
-            
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 3 + 's';
-                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                bgAnimation.appendChild(particle);
-            }
-        }
+/* ======= SINIFLAR ======= */
+class Star {
+    constructor(){ this.reset(); }
+    reset(){
+        this.x = rand(0,w); this.y = rand(0,h);
+        this.r = rand(0.5, 2.5) * DPR;
+        this.a = rand(0.1, 0.6);
+        this.v = rand(0.2, 0.5) * DPR;
+    }
+    draw(){
+        this.y -= this.v;
+        if(this.y < 0) this.reset();
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fillStyle = `rgba(255,255,255,${this.a})`;
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, TAU); ctx.fill();
+    }
+}
+const stars = Array.from({length:80}, ()=>new Star());
 
-        // Smooth Scroll
-        function smoothScroll(target) {
-            document.querySelector(target).scrollIntoView({
-                behavior: 'smooth'
+class YarnHeart {
+    constructor(){
+        // Konum: Ekranın her yerine dağılsın
+        this.cx = w/2 + rand(-w*0.45, w*0.45);
+        this.cy = h/2 + rand(-h*0.35, h*0.35);
+        this.scale = rand(5, 9) * DPR; 
+        
+        // ÖMÜR AYARLARI
+        this.life = 0; // 0'dan başlayıp parlayacak (Fade In)
+        this.maxLife = 1.0;
+        this.state = "born"; // born -> alive -> dying
+        this.fadeInSpeed = rand(0.01, 0.03);
+        this.decay = rand(0.0005, 0.0015);
+
+        this.threads = [];
+        const count = 150; // Biraz optimize ettik ki sayı artınca kasmasın
+        for(let i=0; i<count; i++){
+            const isVein = Math.random() < 0.25;
+            const u = rand(0,1);
+            const inward = rand(0.1, 0.9);
+            const p = heartXY01(u);
+            this.threads.push({
+                isVein, u,
+                x: this.cx + p.x * this.scale * inward,
+                y: this.cy + p.y * this.scale * inward,
+                vx:0, vy:0,
+                hue: isVein ? rand(300, 340) : rand(335, 360),
+                speed: isVein ? rand(0.003, 0.006) : rand(0.001, 0.003),
+                spiral: isVein ? rand(2,8)*DPR : rand(5,15)*DPR,
+                jitter: isVein ? rand(2,4) : rand(1,2),
+                w: rand(0.5, 1.5) * DPR
             });
         }
+    }
 
-        // Scroll Reveal Animation
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
-                }
-            });
+    updateAndDraw(dt, t){
+        // ÖMÜR MANTIĞI (Fade In / Fade Out)
+        if(this.state === "born"){
+            this.life += this.fadeInSpeed;
+            if(this.life >= 1.0){
+                this.life = 1.0;
+                this.state = "dying";
+            }
+        } else {
+            this.life -= this.decay;
         }
 
-        // Music Control
-        const musicToggle = document.getElementById('musicToggle');
-        const bgMusic = document.getElementById('bgMusic');
-        let isMusicPlaying = false;
+        this.cy -= 0.1 * DPR; // Çok yavaş yukarı
 
-        musicToggle.addEventListener('click', () => {
-            if (isMusicPlaying) {
-                bgMusic.pause();
-                musicToggle.innerHTML = '<div class="music-icon">🎵</div>';
-                isMusicPlaying = false;
-            } else {
-                bgMusic.play().catch(e => {
-                    console.log('Audio playback failed:', e);
-                    alert('Müzik çalmak için tarayıcı izni gerekiyor. Lütfen sayfaya bir kez tıklayın.');
-                });
-                musicToggle.innerHTML = '<div class="music-icon">🔊</div>';
-                isMusicPlaying = true;
+        for(let a of this.threads){
+            a.u += a.speed;
+            if(a.u > 1) a.u -= 1;
+            const p = heartXY01(a.u);
+            const inward = a.isVein ? 0.55 : 0.72;
+            const baseS = this.scale * inward;
+            const ang = (a.u * TAU * (a.isVein?6:3)) + t*(a.isVein?3.0:1.6);
+            const sx = Math.cos(ang) * a.spiral;
+            const sy = Math.sin(ang) * a.spiral;
+            const tx = this.cx + p.x*baseS + sx;
+            const ty = this.cy + p.y*baseS + sy;
+            const cn = curlNoise(a.x, a.y, t);
+
+            a.vx += (tx - a.x) * 0.06 + cn.vx * a.jitter;
+            a.vy += (ty - a.y) * 0.06 + cn.vy * a.jitter;
+            a.vx *= 0.90; a.vy *= 0.90;
+
+            const ox = a.x; const oy = a.y;
+            a.x += a.vx; a.y += a.vy;
+
+            const alpha = this.life * (a.isVein ? 0.9 : 0.5); 
+            if(alpha > 0.01){
+                strokeSeg(ox, oy, a.x, a.y, a.hue, alpha, a.w, 0.8);
             }
-        });
+        }
+    }
+}
 
-        // Interactive Card Effects
-        document.querySelectorAll('.special-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.style.animation = 'none';
-                setTimeout(() => {
-                    this.style.animation = '';
-                }, 10);
-                
-                // Create burst effect
-                for (let i = 0; i < 10; i++) {
-                    const heart = document.createElement('div');
-                    heart.textContent = '💖';
-                    heart.style.position = 'absolute';
-                    heart.style.left = '50%';
-                    heart.style.top = '50%';
-                    heart.style.fontSize = '20px';
-                    heart.style.pointerEvents = 'none';
-                    heart.style.animation = `burstOut 1s ease-out forwards`;
-                    heart.style.transform = `rotate(${Math.random() * 360}deg)`;
-                    
-                    this.appendChild(heart);
-                    
-                    setTimeout(() => heart.remove(), 1000);
+let hearts = [];
+const MAX_HEARTS = 15; // HEDEF SAYI ARTTI
+
+class Stem{
+    constructor(x,y,a,d){
+        this.x=x; this.y=y; this.a=a; this.d=d;
+        this.len=0; this.max=rand(60,110) * DPR; this.speed=rand(0.6,1.2) * DPR;
+        this.children=[]; this.bloom=false;
+    }
+    update(){
+        if(this.len < this.max){
+            this.len += this.speed; this.a += Math.sin(time*0.01)*0.002;
+        } else {
+            if(this.d > 0 && this.children.length===0){
+                if(Math.random() > 0.96){
+                    this.children.push(new Stem(this.endX,this.endY,this.a-0.4,this.d-1));
+                    this.children.push(new Stem(this.endX,this.endY,this.a+0.4,this.d-1));
                 }
-            });
-        });
+            } else this.bloom=true;
+        }
+        this.endX = this.x + Math.cos(this.a)*this.len;
+        this.endY = this.y + Math.sin(this.a)*this.len;
+        this.children.forEach(c=>c.update());
+    }
+    draw(){
+        ctx.globalCompositeOperation="screen";
+        ctx.strokeStyle=`hsla(100, 70%, 50%, ${this.d/6})`;
+        ctx.lineWidth = this.d * DPR * 0.5; ctx.lineCap = "round";
+        ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(this.endX,this.endY); ctx.stroke();
+        if(this.bloom){
+            ctx.fillStyle="rgba(255,80,140,0.8)";
+            ctx.shadowBlur=15; ctx.shadowColor="pink";
+            ctx.beginPath(); ctx.arc(this.endX,this.endY, 3*DPR, 0, TAU); ctx.fill();
+            ctx.shadowBlur=0;
+        }
+        this.children.forEach(c=>c.draw());
+    }
+}
+const flower = new Stem(w/2, h, -Math.PI/2, 6);
 
-        // Add burst animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes burstOut {
-                to {
-                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
+let textAlpha=0;
+function drawText(){
+    textAlpha = Math.min(textAlpha+0.003, 1);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.textAlign="center";
+    ctx.shadowColor="gold"; ctx.shadowBlur=20;
+    ctx.fillStyle=`rgba(255, 210, 125, ${textAlpha})`;
+    let fs1 = Math.min(w,h) * 0.05;
+    ctx.font=`${fs1}px 'Great Vibes'`;
+    ctx.fillText("İyi ki Doğdun Sevgilim", w/2, h*0.15);
+    let fs2 = fs1 * 0.7;
+    ctx.font=`${fs2}px 'Great Vibes'`;
+    ctx.fillText("Kasım’lı değil,", w/2, h*0.25);
+    ctx.fillText("Aralıksız seviyorum seni.", w/2, h*0.32);
+    ctx.shadowBlur=0;
+}
 
-        // Initialize
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', () => {
-            createFloatingHearts();
-            createParticles();
-            revealOnScroll();
-        });
+let last = performance.now();
+function animate(now){
+    const dt = Math.min(0.033, (now-last)/1000);
+    last = now;
+    time += dt;
 
-        // Easter egg - Create heart trail on mouse move
-        let lastTime = 0;
-        document.addEventListener('mousemove', (e) => {
-            const now = Date.now();
-            if (now - lastTime > 100) {
-                const heart = document.createElement('div');
-                heart.textContent = '💗';
-                heart.style.position = 'fixed';
-                heart.style.left = e.pageX + 'px';
-                heart.style.top = e.pageY + 'px';
-                heart.style.fontSize = '14px';
-                heart.style.pointerEvents = 'none';
-                heart.style.animation = 'fadeOut 1s ease-out forwards';
-                heart.style.zIndex = '999';
-                
-                document.body.appendChild(heart);
-                
-                setTimeout(() => heart.remove(), 1000);
-                lastTime = now;
-            }
-        });
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "rgba(2, 3, 10, 0.15)";
+    ctx.fillRect(0,0,w,h);
 
-        const fadeOutStyle = document.createElement('style');
-        fadeOutStyle.textContent = `
-            @keyframes fadeOut {
-                to {
-                    opacity: 0;
-                    transform: translateY(-30px);
-                }
-            }
-        `;
-        document.head.appendChild(fadeOutStyle);
-    </script>
+    stars.forEach(s => s.draw());
+
+    // --- GÜNCELLENMİŞ SPAWN MANTIĞI ---
+    // Hepsini aynı anda doğurmak yerine rastgele zamanlarda ekle
+    // Eğer ekrandaki kalp sayısı hedeften azsa, %3 şansla yeni bir tane ekle
+    if(hearts.length < MAX_HEARTS && Math.random() < 0.03){
+        hearts.push(new YarnHeart());
+    }
+
+    for(let i=hearts.length-1; i>=0; i--){
+        hearts[i].updateAndDraw(dt, time);
+        if(hearts[i].life <= 0 && hearts[i].state === "dying") {
+            hearts.splice(i, 1);
+        }
+    }
+
+    flower.update();
+    flower.draw();
+    drawText();
+
+    requestAnimationFrame(animate);
+}
+
+resize();
+flower.x = w/2; flower.y = h;
+animate(performance.now());
+
+</script>
 </body>
 </html>
