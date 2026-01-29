@@ -1,876 +1,829 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Yağmur'a Özel Evrenim ✨</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi ki doğdun Yağmur 💖</title>
     <style>
-        /* Google Fonts Import */
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap');
 
-        /* CSS Değişkenleri (Custom Properties) */
-        :root {
-            --primary-color: #880e4f; /* Derin gül kurusu */
-            --secondary-color: #d81b60; /* Canlı pembe */
-            --accent-color: #ad1457; /* Koyu pembe */
-            --text-color-dark: #4a1421; /* Koyu bordo */
-            --bg-light-pink: #fce4ec; /* Açık pembe arka plan */
-            --bg-soft-pink: #f8bbd0; /* Daha soft pembe arka plan */
-            --bg-header-start: #ffd1dc; /* Header degrade başlangıcı */
-            --bg-header-mid: #ff80a6; /* Header degrade ortası */
-            --bg-nav: #ffbcd9e6; /* Navigasyon arka planı */
-            --bg-quote: #ffe0eb; /* Alıntı arka planı */
-            --bg-surprise: #ffecf2; /* Sürpriz mesaj arka planı */
-            --shadow-primary: rgba(136, 14, 79, 0.4);
-            --shadow-secondary: rgba(136, 14, 79, 0.25);
-            --shadow-heart: rgba(216, 27, 96, 0.3);
-            --shadow-surprise: rgba(216, 27, 96, 0.4);
-
-            --border-radius-lg: 20px;
-            --border-radius-md: 15px;
-            --border-radius-sm: 12px;
-            --border-radius-xs: 8px;
-
-            --font-size-header-lg: 4.5rem;
-            --font-size-header-md: 3.5rem;
-            --font-size-header-sm: 2.5rem;
-            --font-size-h2-lg: 3.8rem;
-            --font-size-h2-md: 2.8rem;
-            --font-size-h2-sm: 2rem;
-            --font-size-text-lg: 1.4rem;
-            --font-size-text-md: 1.15rem;
-            --font-size-text-sm: 1rem;
-            --font-size-nav-lg: 1.25rem;
-            --font-size-nav-md: 1.1rem;
-            --font-size-nav-sm: 0.95rem;
-            --font-size-surprise-lg: 1.7rem;
-            --font-size-surprise-md: 1.4rem;
-            --font-size-surprise-sm: 1.2rem;
-            --font-size-btn-lg: 1.25rem;
-            --font-size-btn-md: 1.05rem;
-            --font-size-btn-sm: 0.9rem;
-            --font-size-flowers-lg: 4.2rem;
-            --font-size-flowers-md: 3.2rem;
-            --font-size-flowers-sm: 2.8rem;
-        }
-
-        /* Genel Sıfırlama ve Temel Ayarlar */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        body, html {
-            height: 100%;
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, var(--bg-light-pink), var(--bg-soft-pink));
+        :root {
+            --primary-pink: #FFB7C5;
+            --secondary-purple: #C8A2E0;
+            --soft-cream: #FFF5E1;
+            --gold: #FFD700;
+            --dark-text: #4A4A4A;
+            --light-text: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            color: var(--text-color-dark);
-            user-select: none;
-            position: relative;
+            background: linear-gradient(135deg, #FFE5EC 0%, #F3E5F5 50%, #E8EAF6 100%);
+            color: var(--dark-text);
             scroll-behavior: smooth;
-            /* Mobil cihazlarda fare imleci varsayılan olsun */
-            cursor: auto; 
-        }
-        /* Masaüstü cihazlarda özel imleç */
-        body.desktop {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23d81b60" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto;
         }
 
-        /* Sayfa Yükleme Animasyonu */
-        body.fade-in {
-            animation: pageFadeIn 1.5s ease-out forwards;
-        }
-        @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Arka Plan Parıltı Efekti */
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* Sayfa Başlığı (Header) */
-        header {
+        /* Animated Background */
+        .background-animation {
             position: fixed;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            font-family: 'Great Vibes', cursive;
-            font-size: var(--font-size-header-lg);
-            color: var(--primary-color);
-            padding: 35px 20px 15px 20px;
-            letter-spacing: 5px;
-            text-align: center;
+            left: 0;
             width: 100%;
-            max-width: 800px;
-            background: linear-gradient(270deg, var(--bg-header-start), var(--bg-header-mid), var(--bg-header-start));
-            background-size: 600% 100%;
-            animation: shimmer 12s ease-in-out infinite;
-            box-shadow: 0 8px 25px var(--shadow-primary);
-            border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
-            user-select: none;
-            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.7);
-        }
-        header::after {
-            content: '💖';
-            display: inline-block;
-            font-size: 0.7em;
-            margin-left: 15px;
-            animation: pulse 1.5s infinite alternate;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
 
-        /* Navigasyon Menüsü */
-        nav {
-            position: fixed;
-            /* Bu top değeri JS ile dinamik olarak ayarlanacak */
-            top: 150px; 
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floatUp 15s infinite ease-in;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, var(--gold), transparent);
+            border-radius: 50%;
+            animation: sparkle 3s infinite ease-in-out;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 50%, #F67280 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: fadeInDown 1.5s ease-out;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--dark-text);
+            margin-bottom: 40px;
+            animation: fadeInUp 1.5s ease-out 0.5s backwards;
+            font-style: italic;
+        }
+
+        .heart-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 40px 0;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .big-heart {
+            font-size: 150px;
+            animation: heartbeat 1.5s infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
-            max-width: 700px;
-            display: flex;
-            background: var(--bg-nav);
-            box-shadow: 0 5px 18px var(--shadow-secondary);
-            border-radius: var(--border-radius-md);
-            z-index: 999;
-            user-select: none;
-            backdrop-filter: blur(8px);
-        }
-        nav button {
-            flex: 1;
-            padding: 16px 0;
-            font-size: var(--font-size-nav-lg);
-            font-weight: 600;
-            color: var(--primary-color);
-            background: transparent;
-            border: none;
+            animation: bounce 2s infinite;
             cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 1.5px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 40px;
+            color: var(--primary-pink);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Message Section */
+        .message-section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(255, 107, 157, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: fadeIn 1s ease-out;
             position: relative;
             overflow: hidden;
         }
-        nav button::before {
+
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .message-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #C06C84;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-card p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            line-height: 1.8;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Special Things Section */
+        .special-section {
+            min-height: 100vh;
+            padding: 80px 20px;
+        }
+
+        .special-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            color: #C06C84;
+            margin-bottom: 60px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .special-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(192, 108, 132, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(120deg, transparent, var(--primary-color)88, transparent);
-            transition: all 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
         }
-        nav button:hover::before {
+
+        .special-card:hover::before {
             left: 100%;
         }
-        nav button:hover,
-        nav button.active {
-            background-color: var(--primary-color);
-            color: #fff;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(136, 14, 79, 0.7);
-            transform: translateY(-3px);
-        }
-        nav button:not(:last-child) {
-            border-right: 1px solid rgba(255, 255, 255, 0.3);
+
+        .special-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 45px rgba(192, 108, 132, 0.3);
         }
 
-        /* Ana İçerik Bölümü */
-        main {
-            /* Bu padding-top değeri JS ile dinamik olarak ayarlanacak */
-            padding: 220px 20px 60px 20px; 
-            max-width: 750px;
-            margin: 0 auto;
+        .card-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .special-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #C06C84;
+            margin-bottom: 15px;
+        }
+
+        .special-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--dark-text);
+        }
+
+        /* Final Section */
+        .final-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
             position: relative;
-            min-height: calc(100vh - 280px);
         }
 
-        /* Sayfa Bölümleri */
-        section.page {
+        .final-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 50%, #F67280 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInScale 2s ease-out;
+            margin-bottom: 40px;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .love-animation {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .rotating-hearts {
             position: absolute;
             width: 100%;
+            height: 100%;
+            animation: rotate 10s linear infinite;
+        }
+
+        .rotating-heart {
+            position: absolute;
+            font-size: 40px;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.5));
+        }
+
+        .rotating-heart:nth-child(1) {
             top: 0;
-            left: 0;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            padding: 20px;
-            background: #fffafa99;
-            border-radius: var(--border-radius-lg);
-            box-shadow: 0 0 30px var(--shadow-primary);
-        }
-        section.page.active {
-            opacity: 1;
-            pointer-events: all;
-            position: relative;
-            transform: translateY(0);
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        /* Büyük Kalp - İyileştirilmiş ve Canlı */
-        .heart-main {
-            width: 200px;
-            height: 180px;
-            margin: 20px auto 40px auto;
-            background: linear-gradient(135deg, var(--bg-header-mid), var(--secondary-color));
-            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 85%, 20% 100%, 0% 35%);
-            animation: heartbeat 2.5s infinite ease-in-out;
-            filter:
-                drop-shadow(0 0 15px var(--secondary-color)cc)
-                drop-shadow(0 0 30px var(--bg-header-mid)bb);
-            cursor: pointer;
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            box-shadow: 0 0 30px 6px #ffccd2aa;
-            position: relative;
-            z-index: 10;
-        }
-        .heart-main::before, .heart-main::after {
-            content: '';
-            position: absolute;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            filter: blur(10px);
-        }
-        .heart-main::before {
-            width: 40%;
-            height: 40%;
-            top: 15%;
-            left: 15%;
-        }
-        .heart-main::after {
-            width: 25%;
-            height: 25%;
-            top: 30%;
-            left: 60%;
-        }
-        .heart-main:hover {
-            transform: scale(1.3) rotate(-10deg);
-            box-shadow:
-                0 0 45px 10px #ff6699dd,
-                0 0 80px 18px #ff3366dd;
-        }
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            30%, 70% { transform: scale(1.1); }
-            50% { transform: scale(1.18); }
+        .rotating-heart:nth-child(2) {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
         }
 
-        /* Metin Başlıkları ve Paragraflar */
-        h2 {
-            font-family: 'Great Vibes', cursive;
-            text-align: center;
-            font-size: var(--font-size-h2-lg);
-            margin-bottom: 25px;
-            color: var(--primary-color);
-            text-shadow: 1px 1px 6px rgba(255, 255, 255, 0.8);
-            position: relative;
-            padding-bottom: 10px;
-        }
-        h2::after {
-            content: '';
-            position: absolute;
+        .rotating-heart:nth-child(3) {
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 5px;
         }
 
-        p, blockquote {
-            font-family: 'Montserrat', sans-serif;
-            font-size: var(--font-size-text-lg);
-            line-height: 1.8;
-            max-width: 650px;
-            margin: 0 auto 30px auto;
-            text-align: center;
-            color: var(--text-color-dark);
-            font-weight: 400;
+        .rotating-heart:nth-child(4) {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
         }
-        blockquote {
-            font-style: italic;
-            background: var(--bg-quote);
-            padding: 25px 35px;
-            border-radius: 30px;
-            box-shadow: 0 0 30px var(--shadow-heart);
-            border-left: 5px solid var(--secondary-color);
-            position: relative;
-            overflow: hidden;
-        }
-        blockquote::before {
-            content: '❝';
+
+        .center-heart {
             position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 4em;
-            color: rgba(136, 14, 79, 0.1);
-            z-index: 0;
-        }
-        blockquote::after {
-            content: '❞';
-            position: absolute;
-            bottom: -10px;
-            right: 20px;
-            font-size: 4em;
-            color: rgba(136, 14, 79, 0.1);
-            z-index: 0;
-        }
-        blockquote p {
-            position: relative;
-            z-index: 1;
-            color: #6a1b9a;
-            font-weight: 500;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            animation: heartbeat 1.5s infinite;
         }
 
-        .flowers {
-            font-size: var(--font-size-flowers-lg);
-            text-align: center;
-            margin-top: 20px;
-            user-select: none;
-            text-shadow: 0 0 10px #ffccd2cc;
-            animation: fadeIn 2s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Sürpriz Mesaj Kutusu */
-        #surprise-message {
-            font-size: var(--font-size-surprise-lg);
-            font-style: italic;
-            text-align: center;
-            max-width: 550px;
-            margin: 25px auto;
-            padding: 28px 32px;
-            background: var(--bg-surprise);
-            border-radius: 35px;
-            box-shadow: 0 0 35px var(--shadow-surprise);
-            color: var(--accent-color);
-            min-height: 140px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.4s ease-out;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        #surprise-message:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 45px rgba(216, 27, 96, 0.6);
-            border-color: var(--secondary-color);
-        }
-        #surprise-message.active {
-            animation: popIn 0.5s ease-out;
-        }
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            70% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); }
-        }
-
-        /* Sürpriz Butonu */
-        #new-msg-btn {
-            display: block;
-            margin: 25px auto 0 auto;
-            padding: 16px 40px;
-            font-size: var(--font-size-btn-lg);
-            font-weight: 700;
-            border-radius: 60px;
-            border: none;
-            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-            color: var(--bg-light-pink);
-            cursor: pointer;
-            box-shadow: 0 10px 22px rgba(136, 14, 79, 0.6);
-            transition: all 0.4s ease;
-            user-select: none;
-            letter-spacing: 0.8px;
-        }
-        #new-msg-btn:hover {
-            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
-            transform: translateY(-5px);
-            box-shadow: 0 15px 28px rgba(136, 14, 79, 0.8);
-        }
-
-        /* Uçuşan Kalpler ve Çiçekler (Yukarı Doğru) - Kaldırıldı */
-        /* .floating, .heart-floating, .flower-floating { display: none; } */
-
-        /* Yağan Elementler (Aşağı Doğru) - Kaldırıldı */
-        /* .falling-element { display: none; } */
-
-        /* Fare İzi Efekti */
-        .mouse-sparkle {
-            position: absolute;
-            pointer-events: none;
-            font-size: 1.2rem;
-            opacity: 0;
-            animation: fadeOutUp 1s forwards;
-            z-index: 10000;
-            color: var(--bg-header-mid);
-            text-shadow: 0 0 5px #fff;
-        }
-        @keyframes fadeOutUp {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-30px) scale(0.5); opacity: 0; }
-        }
-
-        /* Tıklama Efekti */
-        .click-particle {
-            position: absolute;
-            pointer-events: none;
-            background-color: var(--bg-header-mid);
-            border-radius: 50%;
-            opacity: 0;
-            animation: clickBurst 0.8s forwards;
-            z-index: 10000;
-        }
-        @keyframes clickBurst {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(2); opacity: 0; }
-        }
-
-        /* Müzik Kontrol Butonu */
-        #music-toggle-btn {
+        /* Music Control */
+        .music-control {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1001;
-            background: var(--primary-color);
-            color: #fff;
-            border: none;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
             border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            font-size: 1.8rem;
+            border: 2px solid rgba(255, 107, 157, 0.3);
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(136, 14, 79, 0.5);
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(192, 108, 132, 0.2);
+            z-index: 1000;
         }
-        #music-toggle-btn:hover {
-            background: var(--accent-color);
+
+        .music-control:hover {
             transform: scale(1.1);
+            background: rgba(255, 182, 193, 0.6);
         }
 
-        /* --- Responsive Düzenlemeler --- */
-        /* Bu bölümde nav'ın top'unu ve main'in padding-top'unu dinamik hale getireceğiz. */
-        /* Varsayılan değerler JS tarafından kontrol edilecek. */
+        .music-icon {
+            font-size: 24px;
+            animation: musicNote 1s infinite;
+        }
 
+        @keyframes musicNote {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            header {
-                font-size: var(--font-size-header-md);
-                padding: 25px 15px 10px 15px;
+            .message-card {
+                padding: 40px 30px;
             }
-            nav {
-                max-width: 95vw;
+
+            .cards-container {
+                grid-template-columns: 1fr;
             }
-            nav button {
-                font-size: var(--font-size-nav-md);
+
+            .music-control {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
             }
-            h2 {
-                font-size: var(--font-size-h2-md);
+
+            .love-animation {
+                width: 200px;
+                height: 200px;
             }
-            p, blockquote {
-                font-size: var(--font-size-text-md);
+
+            .center-heart {
+                font-size: 60px;
             }
-            #surprise-message {
-                font-size: var(--font-size-surprise-md);
-            }
-            #new-msg-btn {
-                font-size: var(--font-size-btn-md);
-            }
-            .heart-main {
-                width: 150px;
-                height: 135px;
-            }
-            .flowers {
-                font-size: var(--font-size-flowers-md);
-            }
-            #music-toggle-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.5rem;
-                bottom: 15px;
-                right: 15px;
+
+            .rotating-heart {
+                font-size: 30px;
             }
         }
 
-        @media (max-width: 480px) {
-            header {
-                font-size: var(--font-size-header-sm);
-                padding: 18px 10px 6px 10px;
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFE5EC 0%, #F3E5F5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-heart {
+            font-size: 100px;
+            animation: loaderPulse 1.5s infinite;
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
             }
-            nav {
-                flex-wrap: wrap;
-                border-radius: var(--border-radius-xs);
-                padding: 5px 0;
-            }
-            nav button {
-                width: 50%;
-                font-size: var(--font-size-nav-sm);
-                padding: 10px 0;
-                border-right: 1px solid rgba(255, 255, 255, 0.2);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            }
-            nav button:nth-child(1) { border-top-left-radius: var(--border-radius-xs); }
-            nav button:nth-child(2) { border-top-right-radius: var(--border-radius-xs); border-right: none; }
-            nav button:last-child {
-                width: 100%;
-                border-bottom-left-radius: var(--border-radius-xs);
-                border-bottom-right-radius: var(--border-radius-xs);
-                border-right: none;
-                border-bottom: none;
-            }
-            h2 {
-                font-size: var(--font-size-h2-sm);
-            }
-            h2::after {
-                width: 60px;
-            }
-            p, blockquote {
-                font-size: var(--font-size-text-sm);
-            }
-            blockquote::before, blockquote::after {
-                font-size: 3em;
-            }
-            #surprise-message {
-                font-size: var(--font-size-surprise-sm);
-            }
-            #new-msg-btn {
-                font-size: var(--font-size-btn-sm);
-            }
-            .heart-main {
-                width: 120px;
-                height: 108px;
-            }
-            .flowers {
-                font-size: var(--font-size-flowers-sm);
-            }
-            .mouse-sparkle {
-                font-size: 0.8rem;
-            }
-            .mobile .mouse-sparkle,
-            .mobile .click-particle {
-                display: none !important;
+            50% {
+                transform: scale(1.3);
+                opacity: 0.7;
             }
         }
 
-        @media (max-width: 320px) {
-            header {
-                font-size: 2.2rem;
-                padding: 15px 5px 5px 5px;
-            }
-            nav button {
-                font-size: 0.85rem;
-            }
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="fade-in">
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-heart">💖</div>
+    </div>
 
-<header>Yağmur'a Özel Evrenim</header>
+    <!-- Background Animation -->
+    <div class="background-animation" id="bgAnimation"></div>
 
-<nav>
-    <button class="nav-btn active" data-page="home" aria-label="Ana Sayfa">Ana Sayfa</button>
-    <button class="nav-btn" data-page="surprise" aria-label="Sürpriz Mesajlar">Kıymetli Sözler</button>
-    <button class="nav-btn" data-page="about" aria-label="Hakkında">Kutlama</button>
-</nav>
-
-<main>
-    <section id="home" class="page active" aria-label="Ana Sayfa">
-        <div class="heart-main" title="Büyülü bir his"></div>
-        <h2>Hoşgeldin Yağmur ✨</h2>
-        <p>Seninle geçen her an, ruhuma dokunan eşsiz bir melodi. Varlığın, hayatımın en değerli armağanı.</p>
-        <p>Senin ışığınla, her gün yeni bir başlangıç, yeni bir keşif oluyor. Bu dünya, seninle çok daha parıltılı.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">İyi ki doğdun Yağmur 💖</h1>
+        <p class="hero-subtitle">Hayatıma gelen en güzel hediye sensin...</p>
+        <div class="heart-container">
+            <div class="big-heart">💗</div>
+        </div>
+        <div class="scroll-indicator" onclick="smoothScroll('.message-section')"></div>
     </section>
 
-    <section id="surprise" class="page" aria-label="Sürpriz Mesajlar">
-        <h2>Bugünün İlham Veren Sözü</h2>
-        <div id="surprise-message">💌 Bu kutuya dokun ve ilham veren bir mesaj al!</div>
-        <button id="new-msg-btn" aria-label="Yeni mesaj göster">Yeni Söz Göster</button>
+    <!-- Message Section -->
+    <section class="message-section reveal">
+        <div class="message-card">
+            <h2>Sevgili Yağmur'um,</h2>
+            <p>
+                Bugün senin günün ve bu özel günde sana ne kadar değerli olduğunu hatırlatmak istedim. 
+                Hayatıma kattığın her an, her gülümseme, her bakış benim için paha biçilmez.
+            </p>
+            <p>
+                Sen sadece bir doğum günü kutlamasından daha fazlasını hak ediyorsun, ama umarım bu küçük sürpriz 
+                seni gülümsetir ve sana ne kadar özel olduğunu hissettirir.
+            </p>
+            <p>
+                Her yeni yaşın, hayallerinin gerçekleştiği, mutluluğunun katlandığı ve her anın güzelliklerle dolu olduğu 
+                bir yıl olsun. Yanında olduğum her an bir hediye.
+            </p>
+        </div>
     </section>
 
-    <section id="about" class="page" aria-label="Kutlama">
-        <h2>Seninle Her An Bir Kutlama</h2>
-        <p>Sen bir zambaksın, duru ve asil,<br>
-            Ay ışığı gibi yansırsın daima.<br>
-            Orkide misali narin, eşsiz, büyüleyici,<br>
-            Ve ruhum, seninle her an huzur bulur.</p>
-        <blockquote>Sen benim en değerli çiçeğimsin.</blockquote>
-        <div class="flowers">🌹 🌷 🌺</div>
+    <!-- Special Things Section -->
+    <section class="special-section reveal">
+        <h2 class="special-title">Seni Özel Yapan Şeyler</h2>
+        <div class="cards-container">
+            <div class="special-card">
+                <div class="card-icon">✨</div>
+                <h3>Gülüşün</h3>
+                <p>Gülüşün kalbime dokunuyor ve her şeyi daha güzel kılıyor. O gülümseme karşısında erimemek mümkün değil.</p>
+            </div>
+            <div class="special-card">
+                <div class="card-icon">🌟</div>
+                <h3>Enerjin</h3>
+                <p>Hayata bakış açın, pozitif enerjin ve her zaman ışıldayan ruhun etrafındaki herkesi aydınlatıyor.</p>
+            </div>
+            <div class="special-card">
+                <div class="card-icon">💫</div>
+                <h3>Kalbin</h3>
+                <p>İçindeki iyilik, anlayış ve sevgi dolu kalbin seni gerçekten özel ve eşsiz yapıyor.</p>
+            </div>
+            <div class="special-card">
+                <div class="card-icon">🎨</div>
+                <h3>Benzersizliğin</h3>
+                <p>Senin gibi biri yok. Her detayın, her özelliğin seni sen yapıyor ve bu mükemmel.</p>
+            </div>
+            <div class="special-card">
+                <div class="card-icon">🌸</div>
+                <h3>Güzelliğin</h3>
+                <p>Sadece dış güzelliğin değil, iç güzelliğin de seni özel yapan şeylerden. İçinden dışına güzelsin.</p>
+            </div>
+            <div class="special-card">
+                <div class="card-icon">💝</div>
+                <h3>Sevgin</h3>
+                <p>Sevme şeklin, önemseme biçimin ve her an yanımda olman hayatımın en değerli hediyesi.</p>
+            </div>
+        </div>
     </section>
-</main>
 
-<audio id="background-music" loop>
-    Tarayıcınız ses öğesini desteklemiyor.
-</audio>
+    <!-- Final Section -->
+    <section class="final-section reveal">
+        <div class="final-message">Seni Çok Seviyorum</div>
+        <div class="love-animation">
+            <div class="rotating-hearts">
+                <div class="rotating-heart">💕</div>
+                <div class="rotating-heart">💖</div>
+                <div class="rotating-heart">💗</div>
+                <div class="rotating-heart">💝</div>
+            </div>
+            <div class="center-heart">❤️</div>
+        </div>
+    </section>
 
-<button id="music-toggle-btn" aria-label="Müziği Aç/Kapat">
-    <span id="music-icon">🔇</span>
-</button>
+    <!-- Music Control -->
+    <div class="music-control" id="musicToggle" title="Müziği Aç/Kapat">
+        <div class="music-icon">🎵</div>
+    </div>
 
-<script>
-    // DOM Elementlerini Seçimi
-    const navButtons = document.querySelectorAll('nav button');
-    const pages = document.querySelectorAll('main .page');
-    const heartMain = document.querySelector('.heart-main');
-    const surpriseMessageEl = document.getElementById('surprise-message');
-    const newMsgBtn = document.getElementById('new-msg-btn');
-    const backgroundMusic = document.getElementById('background-music');
-    const musicToggleButton = document.getElementById('music-toggle-btn');
-    const musicIcon = document.getElementById('music-icon');
-    const header = document.querySelector('header');
-    const nav = document.querySelector('nav');
-    const main = document.querySelector('main');
+    <!-- Hidden Audio Element -->
+    <audio id="bgMusic" loop>
+        <!-- You can add your music source here -->
+        <!-- <source src="your-music.mp3" type="audio/mpeg"> -->
+    </audio>
 
-    // Mesajlar Dizisi
-    const messages = [
-        "Seninle her gün yeni bir bahar gibi, içim coşkuyla doluyor. 🌸",
-        "Gülüşün, kalbimi ısıtan en güzel melodi. 🎶",
-        "Varlığın, dünyamdaki en parlak ışık. ✨",
-        "Sen benim eşsiz çiçeğimsin. 🌼",
-        "Birlikte her şey daha anlamlı, daha özel. 💕",
-        "Seninle yaşam bir şiir, her dizesi güzellikle dolu. ✍️",
-        "Seni düşündüğümde ruhum dans ediyor. 💃",
-        "Her an seninle olmak, en güzel düş. 🌙",
-        "Senin yanında dünya daha parlak, daha renkli. 🌈",
-        "Birlikteliğimiz filizleniyor, hiç solmasın. 🌻",
-        "Yüreğimdeki esintisin, Yağmur. 🌬️",
-        "Her saniye seninle daha kıymetli. ⏳",
-        "Seninle olmak, en saf duygu. 🤍",
-        "Sana olan hislerim hiç bitmesin. ♾️",
-        "Gözlerin, yıldızlardan daha parlak. ⭐",
-        "Seninle her an bir mucize. 💫",
-        "Varlığınla her şey daha anlamlı. 💖",
-        "Hayatıma kattığın renkler paha biçilemez. 🎨",
-        "Sen benim gökyüzümdeki en parlak yıldızsın. 🌠",
-        "Her nefesimde seninle olmak dileğiyle. 🌬️",
-        "Sonsuzluğa uzanan yolculuğumda ışığımsın.💡",
-        "Seninle her an bir melodi, bir şarkı. 🎵"
-    ];
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
 
-    // Fare imleci ve tıklama efekti için emojiler
-    const sparkleEmojis = ['✨', '💖', '🌟', '💫', '🌸'];
-
-    /**
-     * Cihaz tipine göre body sınıfı ekler (mobil/masaüstü).
-     */
-    function setDeviceClass() {
-        if (window.innerWidth > 768) {
-            document.body.classList.add('desktop');
-            document.body.classList.remove('mobile');
-        } else {
-            document.body.classList.add('mobile');
-            document.body.classList.remove('desktop');
+        // Background Animation - Floating Hearts
+        function createFloatingHearts() {
+            const bgAnimation = document.getElementById('bgAnimation');
+            const hearts = ['💕', '💖', '💗', '💝', '💘', '💓'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                bgAnimation.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 15000);
+            }, 1000);
         }
-    }
 
-    /**
-     * Header ve nav'ın yüksekliğine göre main içeriğinin üst boşluğunu ve nav'ın top pozisyonunu ayarlar.
-     */
-    function adjustLayout() {
-        const headerHeight = header.offsetHeight;
-        const navHeight = nav.offsetHeight; // Nav yüksekliğini alalım (flex-wrap nedeniyle değişebilir)
+        // Background Animation - Particles
+        function createParticles() {
+            const bgAnimation = document.getElementById('bgAnimation');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                bgAnimation.appendChild(particle);
+            }
+        }
 
-        // Nav'ı başlığın hemen altına konumlandır
-        nav.style.top = `${headerHeight + 20}px`; // 20px ek boşluk bırak
-        
-        // Main içeriğinin, header ve nav'ın altında kalmaması için padding ekle
-        main.style.paddingTop = `${headerHeight + navHeight + 40}px`; // 40px ek boşluk
-    }
+        // Smooth Scroll
+        function smoothScroll(target) {
+            document.querySelector(target).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
 
-    /**
-     * Sayfa geçişlerini yönetir.
-     * @param {string} targetPageId - Gidilecek sayfanın ID'si.
-     */
-    function goToPage(targetPageId) {
-        navButtons.forEach(button => button.classList.remove('active'));
-        document.querySelector(`[data-page="${targetPageId}"]`).classList.add('active');
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
 
-        pages.forEach(page => {
-            if (page.id === targetPageId) {
-                page.classList.add('active');
+        // Music Control
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let isMusicPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicToggle.innerHTML = '<div class="music-icon">🎵</div>';
+                isMusicPlaying = false;
             } else {
-                page.classList.remove('active');
+                bgMusic.play().catch(e => {
+                    console.log('Audio playback failed:', e);
+                    alert('Müzik çalmak için tarayıcı izni gerekiyor. Lütfen sayfaya bir kez tıklayın.');
+                });
+                musicToggle.innerHTML = '<div class="music-icon">🔊</div>';
+                isMusicPlaying = true;
             }
         });
 
-        // Sürpriz mesaj kutusunu resetle (isteğe bağlı)
-        if (targetPageId === 'surprise') {
-            surpriseMessageEl.textContent = '💌 Bu kutuya dokun ve ilham veren bir mesaj al!';
-            surpriseMessageEl.classList.remove('active');
-        }
-    }
-
-    /**
-     * Büyük kalp animasyonunu tetikler.
-     */
-    function triggerHeartbeatAnimation() {
-        heartMain.style.animation = 'none';
-        void heartMain.offsetWidth; // Reflow tetikle
-        heartMain.style.animation = 'heartbeat 0.6s ease';
-        setTimeout(() => {
-            heartMain.style.animation = 'heartbeat 2.5s infinite ease-in-out';
-        }, 600);
-    }
-
-    /**
-     * Rastgele bir sürpriz mesaj gösterir.
-     */
-    function showRandomMessage() {
-        const previousMessage = surpriseMessageEl.textContent;
-        let idx;
-        do {
-            idx = Math.floor(Math.random() * messages.length);
-        } while (messages[idx] === previousMessage);
-
-        surpriseMessageEl.classList.remove('active');
-        void surpriseMessageEl.offsetWidth; // Reflow tetikle
-        surpriseMessageEl.textContent = messages[idx];
-        surpriseMessageEl.classList.add('active');
-
-        // Mesaj gösterildiğinde etrafında küçük patlama efekti
-        createBurstEffect(surpriseMessageEl.getBoundingClientRect());
-    }
-
-    /**
-     * Fare imleci hareket ettiğinde parıltı efekti oluşturur.
-     * @param {MouseEvent} e - Fare olay nesnesi.
-     */
-    function handleMouseMove(e) {
-        if (document.body.classList.contains('mobile')) return;
-
-        const sparkle = document.createElement('span');
-        sparkle.classList.add('mouse-sparkle');
-        sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
-        sparkle.style.left = e.clientX + 'px';
-        sparkle.style.top = e.clientY + 'px';
-        document.body.appendChild(sparkle);
-
-        sparkle.addEventListener('animationend', () => sparkle.remove());
-    }
-
-    /**
-     * Tıklama efektini oluşturur.
-     * @param {MouseEvent} e - Fare olay nesnesi.
-     */
-    function handleClickEffect(e) {
-        if (document.body.classList.contains('mobile')) return;
-
-        const particleCount = 8;
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('click-particle');
-            const size = Math.random() * 10 + 5;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = e.clientX + 'px';
-            particle.style.top = e.clientY + 'px';
-
-            const angle = Math.random() * 2 * Math.PI;
-            const distance = Math.random() * 50 + 20;
-            const translateX = Math.cos(angle) * distance;
-            const translateY = Math.sin(angle) * distance;
-
-            particle.style.setProperty('--translate-x', translateX + 'px');
-            particle.style.setProperty('--translate-y', translateY + 'px');
-            particle.style.animation = `clickBurst 0.8s forwards`;
-
-            document.body.appendChild(particle);
-            particle.addEventListener('animationend', () => particle.remove());
-        }
-    }
-
-    /**
-     * Belirtilen dikdörtgen etrafında patlama efekti oluşturur.
-     * @param {DOMRect} rect - Efektin merkezini belirten dikdörtgen.
-     */
-    function createBurstEffect(rect) {
-        if (document.body.classList.contains('mobile')) return;
-
-        const particleCount = 15;
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('span');
-            particle.classList.add('mouse-sparkle');
-            particle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
-            particle.style.left = centerX + 'px';
-            particle.style.top = centerY + 'px';
-
-            const angle = Math.random() * 2 * Math.PI;
-            const distance = Math.random() * 80 + 30;
-            const translateX = Math.cos(angle) * distance;
-            const translateY = Math.sin(angle) * distance;
-
-            particle.style.animation = `fadeOutUp 1.2s forwards`;
-            particle.style.transform = `translate(${translateX}px, ${translateY}px)`;
-            particle.style.fontSize = (Math.random() * 0.8 + 0.8) + 'rem';
-
-            document.body.appendChild(particle);
-            particle.addEventListener('animationend', () => particle.remove());
-        }
-    }
-
-    /**
-     * Müzik oynatma/durdurma işlevini yönetir.
-     */
-    function toggleMusic() {
-        if (backgroundMusic.paused) {
-            backgroundMusic.play();
-            musicIcon.textContent = '🔊';
-            backgroundMusic.muted = false;
-        } else {
-            backgroundMusic.pause();
-            musicIcon.textContent = '🔇';
-            backgroundMusic.muted = true; // Müziği durdurduğunda sesi tamamen kıs
-        }
-    }
-
-    // Event Dinleyicileri
-    document.addEventListener('DOMContentLoaded', () => {
-        setDeviceClass(); // İlk yüklemede cihaz sınıfını ayarla
-        adjustLayout(); // Layout'u ayarla
-        showRandomMessage(); // Sürpriz mesajı ilk kez göster
-
-        // Müzik otomatik oynatma denemesi ve kontrol butonunu görünür yapma
-        backgroundMusic.muted = true;
-        backgroundMusic.play().catch(error => {
-            console.log("Müzik otomatik oynatma engellendi:", error);
-            musicToggleButton.style.display = 'flex'; // Otomatik oynatma engellendiğinde butonu göster
+        // Interactive Card Effects
+        document.querySelectorAll('.special-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
+                
+                // Create burst effect
+                for (let i = 0; i < 10; i++) {
+                    const heart = document.createElement('div');
+                    heart.textContent = '💖';
+                    heart.style.position = 'absolute';
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    heart.style.fontSize = '20px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.animation = `burstOut 1s ease-out forwards`;
+                    heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    this.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 1000);
+                }
+            });
         });
-    });
 
-    window.addEventListener('resize', () => {
-        setDeviceClass();
-        adjustLayout(); // Boyut değiştiğinde layout'u yeniden ayarla
-    });
+        // Add burst animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes burstOut {
+                to {
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
 
-    navButtons.forEach(btn => {
-        btn.addEventListener('click', () => goToPage(btn.getAttribute('data-page')));
-    });
+        // Initialize
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', () => {
+            createFloatingHearts();
+            createParticles();
+            revealOnScroll();
+        });
 
-    heartMain.addEventListener('click', triggerHeartbeatAnimation);
-    newMsgBtn.addEventListener('click', showRandomMessage);
-    surpriseMessageEl.addEventListener('click', showRandomMessage);
-    musicToggleButton.addEventListener('click', toggleMusic);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('click', handleClickEffect);
+        // Easter egg - Create heart trail on mouse move
+        let lastTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastTime > 100) {
+                const heart = document.createElement('div');
+                heart.textContent = '💗';
+                heart.style.position = 'fixed';
+                heart.style.left = e.pageX + 'px';
+                heart.style.top = e.pageY + 'px';
+                heart.style.fontSize = '14px';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = 'fadeOut 1s ease-out forwards';
+                heart.style.zIndex = '999';
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 1000);
+                lastTime = now;
+            }
+        });
 
-</script>
+        const fadeOutStyle = document.createElement('style');
+        fadeOutStyle.textContent = `
+            @keyframes fadeOut {
+                to {
+                    opacity: 0;
+                    transform: translateY(-30px);
+                }
+            }
+        `;
+        document.head.appendChild(fadeOutStyle);
+    </script>
 </body>
 </html>
